@@ -28,3 +28,26 @@ else
     echo "You are super user."
 fi
 
+cd /opt
+VALIDATE $? "Moving to opt directory"
+
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+VALIDATE $? "Downloading Node exporter"
+
+tar -xf https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+VALIDATE $? "Extracted node exporter"
+
+mv node_exporter-1.8.2.linux-amd64 node_exporter
+VALIDATE $? "Renamed node exporter"
+
+cp /home/ec2-user/prometheus/node_exporter.service /etc/systemd/system/node_exporter.service
+VALIDATE $? "created node exporter service"
+
+systemctl daemon-reload
+VALIDATE $? "Daemon reload"
+
+systemctl enable node_exporter
+VALIDATE $? "enabled node exporter"
+
+systemctl start node_exporter
+VALIDATE $? "Started node exporter"
