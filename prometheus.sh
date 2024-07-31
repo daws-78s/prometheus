@@ -34,17 +34,21 @@ VALIDATE $? "Moving to opt directory"
 rm -rf prometheus*
 VALIDATE $? "removed existing prometheus"
 
-wget https://github.com/prometheus/prometheus/releases/download/v2.54.0-rc.0/prometheus-2.54.0-rc.0.linux-amd64.tar.gz
+wget https://github.com/prometheus/prometheus/releases/download/v2.54.0-rc.0/prometheus-2.54.0-rc.0.linux-amd64.tar.gz &>>$LOGFILE
 
-tar -xf prometheus-2.54.0-rc.0.linux-amd64.tar.gz 
+tar -xf prometheus-2.54.0-rc.0.linux-amd64.tar.gz  &>>$LOGFILE
+VALIDATE $? "extracted prometheus"
 
-mv prometheus-2.54.0-rc.0.linux-amd64 prometheus
+mv prometheus-2.54.0-rc.0.linux-amd64 prometheus &>>$LOGFILE
+VALIDATE $? "renamed prometheus"
 
-cp alert-rules prometheus/
+cp alert-rules prometheus/ &>>$LOGFILE
+VALIDATE $? "copied alert rules"
 
-cp /home/ec2-user/prometheus/prometheus.yml prometheus/prometheus.yml
+cp /home/ec2-user/prometheus/prometheus.yml prometheus/prometheus.yml &>>$LOGFILE
+VALIDATE $? "copied prometheus configuration"
 
-cp /home/ec2-user/prometheus/prometheus.service /etc/systemd/system/prometheus &>>$LOGFILE
+cp /home/ec2-user/prometheus/prometheus.service /etc/systemd/system/prometheus.service &>>$LOGFILE
 VALIDATE $? "created prometheus service"
  
 systemctl daemon-reload &>>$LOGFILE
