@@ -42,7 +42,7 @@ VALIDATE $? "extracted prometheus"
 mv prometheus-2.54.0-rc.0.linux-amd64 prometheus &>>$LOGFILE
 VALIDATE $? "renamed prometheus"
 
-cp /home/ec2-user/prometheus/alert-rules /opt/prometheus/ &>>$LOGFILE
+cp -r /home/ec2-user/prometheus/alert-rules /opt/prometheus/ &>>$LOGFILE
 VALIDATE $? "copied alert rules"
 
 cp /home/ec2-user/prometheus/prometheus.yml prometheus/prometheus.yml &>>$LOGFILE
