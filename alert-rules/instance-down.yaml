@@ -5,6 +5,6 @@ groups:
     expr: up < 1
     for: 1m
     labels:
-      severity: severity
+      severity: 'critical'
     annotations:
       summary: Instance is Down
