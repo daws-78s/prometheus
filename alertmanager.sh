@@ -43,6 +43,9 @@ VALIDATE $? "renamed alert manager"
 cp /home/ec2-user/prometheus/alertmanager.service /etc/systemd/system/alertmanager.service &>>$LOGFILE
 VALIDATE $? "created alertmanager service"
 
+cp /home/ec2-user/prometheus/alertmanager.yml /opt/alertmanager/alertmanager.yml
+VALIDATE $? "alert manger configuration"
+
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? "Daemon reload"
 
