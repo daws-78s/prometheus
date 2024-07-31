@@ -9,6 +9,10 @@
 
 First let's make the nodes ready with exporters. Let's create 2 EC2 instances of t3.micro.
 
+You can find automation scripts in this repo.
+
+**NOTE: Make sure you are in /home/ec2-user/prometheus directory to run the script**
+
 ## Node Exporter (Linux)
 
 First download the node exporter. Take the root access.
