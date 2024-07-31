@@ -31,13 +31,13 @@ fi
 cd /opt
 VALIDATE $? "Moving to opt directory"
 
-wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
-VALIDATE $? "Downloading alert manager"
+wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz &>>$LOGFILE
+VALIDATE $? "Downloading alert manager" 
 
-tar alertmanager-0.27.0.linux-amd64.tar.gz
+tar -xf alertmanager-0.27.0.linux-amd64.tar.gz &>>$LOGFILE
 VALIDATE $? "Extracted alert manager"
 
-mv alertmanager-0.27.0.linux-amd64.tar.gz alertmanager
+mv alertmanager-0.27.0.linux-amd64.tar.gz alertmanager &>>$LOGFILE
 VALIDATE $? "renamed alert manager"
 
 cp /home/ec2-user/prometheus/alertmanager.service /etc/systemd/system/alertmanager.service &>>$LOGFILE
