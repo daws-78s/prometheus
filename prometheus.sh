@@ -31,7 +31,7 @@ fi
 cd /opt
 VALIDATE $? "Moving to opt directory"
 
-rm -rf prometheus-*
+rm -rf prometheus*
 VALIDATE $? "removed existing prometheus"
 
 wget https://github.com/prometheus/prometheus/releases/download/v2.54.0-rc.0/prometheus-2.54.0-rc.0.linux-amd64.tar.gz
