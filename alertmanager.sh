@@ -37,7 +37,7 @@ VALIDATE $? "Downloading alert manager"
 tar -xf alertmanager-0.27.0.linux-amd64.tar.gz &>>$LOGFILE
 VALIDATE $? "Extracted alert manager"
 
-mv alertmanager-0.27.0.linux-amd64.tar.gz alertmanager &>>$LOGFILE
+mv alertmanager-0.27.0.linux-amd64 alertmanager &>>$LOGFILE
 VALIDATE $? "renamed alert manager"
 
 cp /home/ec2-user/prometheus/alertmanager.service /etc/systemd/system/alertmanager.service &>>$LOGFILE
