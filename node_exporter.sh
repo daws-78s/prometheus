@@ -31,23 +31,23 @@ fi
 cd /opt
 VALIDATE $? "Moving to opt directory"
 
-wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+wget https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz &>>$LOGFILE
 VALIDATE $? "Downloading Node exporter"
 
-tar -xf https://github.com/prometheus/node_exporter/releases/download/v1.8.2/node_exporter-1.8.2.linux-amd64.tar.gz
+tar -xf node_exporter-1.8.2.linux-amd64.tar.gz &>>$LOGFILE
 VALIDATE $? "Extracted node exporter"
 
-mv node_exporter-1.8.2.linux-amd64 node_exporter
+mv node_exporter-1.8.2.linux-amd64 node_exporter &>>$LOGFILE
 VALIDATE $? "Renamed node exporter"
 
-cp /home/ec2-user/prometheus/node_exporter.service /etc/systemd/system/node_exporter.service
+cp /home/ec2-user/prometheus/node_exporter.service /etc/systemd/system/node_exporter.service &>>$LOGFILE
 VALIDATE $? "created node exporter service"
-
-systemctl daemon-reload
+ 
+systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? "Daemon reload"
 
-systemctl enable node_exporter
+systemctl enable node_exporter &>>$LOGFILE
 VALIDATE $? "enabled node exporter"
 
-systemctl start node_exporter
+systemctl start node_exporter &>>$LOGFILE
 VALIDATE $? "Started node exporter"
